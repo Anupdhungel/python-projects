@@ -6,9 +6,4 @@ for i in range (1,101):
 
 
 print(f"even numbers are:: {a}")
-print(f"the sum is {sum(a)} ")        
-
-
-
-
-
+print(f"the sum is {sum(a)} ")   
