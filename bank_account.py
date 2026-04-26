@@ -23,10 +23,15 @@ class bankaccount:
             self.balance+= amount
             print(f'{amount} has been deposited in the account of {self.user_name},\n the current balance is {self.balance}  ')
 details=[]
-ask=input('enter your username and balance seperated by a comma:')
-split=ask.split(",")
-user_name=split[0].strip()
-balance=int(split[1].strip())
+try:
+    ask=input('enter your username and balance seperated by a comma:')
+    split=ask.split(",")
+    user_name=split[0].strip()
+    balance=int(split[1].strip())
+
+except (ValueError,IndexError):
+    print("enter you datain proper format(username,balance)")
+    exit()
 detail=[user_name,balance]
 details.append(detail)
 
