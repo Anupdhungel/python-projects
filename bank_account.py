@@ -1,5 +1,5 @@
 
-
+import json
 class bankaccount:
     def __init__(self,user_name,balance):
         self.user_name=user_name
@@ -29,10 +29,20 @@ user_name=split[0].strip()
 balance=int(split[1].strip())
 detail=[user_name,balance]
 details.append(detail)
+
+
+try:
+    with open("bank_details.json","r")as file:
+        data=json.load(file)
+        if data["user_name"] ==user_name:
+            balance= data["balance"]
+            print(f"welcome back user{user_name} \n your balance:{balance}")
+except:
+    pass
 account=bankaccount(user_name,balance)
 
 while True:
-    act=input("what do you want to do among :\ndeposit\nwithdrawl\ncheck balance ----")
+    act=input("what do you want to do among :\ndeposit\nwithdrawl\ncheck balance\nquit to exit ----")
     if act=="deposit":
         account.deposit()
     elif act=="withdrawl":
@@ -44,8 +54,10 @@ while True:
         break
 
 
-
-
-
-
-
+    info={
+        "user_name":account.user_name,
+        "balance":account.balance
+    }
+    with open("bank_details.json","w") as file:
+        json.dump(info,file)
+        print("progress saved")
